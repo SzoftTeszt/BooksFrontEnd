@@ -1,0 +1,41 @@
+{{books|json}}
+
+<h1>Books List</h1>
+
+<!-- <div class="row">
+    <div class="col">Id</div>
+    <div class="col">Title</div>
+    <div class="col">Description</div>
+    <div class="col">Author</div>
+    <div class="col">Actions</div>
+</div> -->
+<p>Kereső: </p>
+<input [(ngModel)]="kif" type="text" class="form-control">    
+
+<div class="row">
+    <div *ngFor="let oszlop of oszlopok" class="col">{{oszlop}}</div>
+    <div class="col">Actions</div>
+</div>
+
+<div class="row">
+
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <input [(ngModel)]="newBook[oszlop]" type="text" class="form-control">    
+    </div>
+    <div class="col">
+        <button (click)="postBook()" type="button" class="btn btn-warning">Add</button>        
+    </div>
+
+</div>
+
+<div *ngFor="let book of books|kereso:kif" class="row">
+
+    <div *ngFor="let oszlop of oszlopok" class="col">
+        <input [(ngModel)]="book[oszlop]" type="text" class="form-control">    
+    </div>
+    <div class="col">
+        <button (click)="putBook(book)" type="button" class="btn btn-warning">Save</button>
+        <button (click)="deleteBook(book)" type="button" class="btn btn-danger ms-2">Delete</button>
+    </div>
+
+</div>
